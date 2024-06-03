@@ -41,7 +41,7 @@ async function removeCartItem(userId,cartItemId){
     return console.log("you cant remove");
 
 }
-async function findCartItemById(cartItem){
+async function findCartItemById(cartItemId){
     const cartItem=await findCartItemById(cartItemId);
     if(cartItem){
         return cartItem

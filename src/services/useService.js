@@ -2,7 +2,7 @@
 const bcrypt = require("bcrypt");
 const {genereteToken}= require ("../Config/jwtProvider");
 const User = require("../models/user");
-const carService = require("../services/cartService");
+const {CreateCart} = require("../services/cartService");
 
 
 
@@ -13,24 +13,33 @@ const signup = async (req, res) => {
       const userExist = await User.findOne({ email });
 
       if (userExist) {
+        console.log("user already exit",userExist);
+
           return res.status(400).send("User already exists");
+          
       }
       else {
           const saltRounds = 10;
           const hashPassword = await bcrypt.hash(password, saltRounds);
 
-          const newUser = new User({
+          const newUser =  new User({
               email,
               firstName,
               lastName,
               hashPassword,
           });
+       
+       const newcreated=await newUser.save();
+    //  console.log(newcreated);
 
-          const newUserCreated = await  carService(newUser);
-          console.log(newUserCreated);
-          const token = genereteToken(newUserCreated._id);
+   
+     
+          const newUserCreated = await  CreateCart( newcreated._id);
+          console.log("cart",newUserCreated);
+
+          const token = genereteToken( newcreated ._id);
           res.cookie("token", token);
-          console.log(token);
+         // console.log(token);
 
           res.status(201).send("Signed up successfully!");
       }
@@ -41,8 +50,10 @@ const signup = async (req, res) => {
 };
 
 const signin = async (req, res) => {
+
   try {
       const { email, password } = req.body;
+      console.log(req.body);
 
       const user = await User.findOne({ email })//("address");
 
@@ -67,17 +78,18 @@ const signin = async (req, res) => {
   }
 };
 
-const findUserById=async(userId)=>{
-    try{
-     const user=await User.findById(userId);
-     if(!user){
-        return console.log("user not found",userId);
-     }
-    return user;
-    }
-    catch(error){
-console.log(error);
+const findUserById=async(user)=>{
+    try {
+        const userId=await User.findById(user)
+        if(!user){
+    throw new Error("user not found",userId);
+    
+        }
+        return user;
+    } catch (error) {
+        throw new Error(error);
     }
 }
+    
 
 module.exports = { signup, signin ,findUserById};

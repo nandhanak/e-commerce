@@ -2,15 +2,12 @@ const mongoose=require ('mongoose')
 
 
 const cardShema=new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"users",
-        require:"true"
-      },
+
+   
       cardItem:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"cartItems",
-        require:true
+        ref:"cardItems",
+        required:true
       }],
       totalPrice: {
         type: Number,
@@ -25,22 +22,26 @@ const cardShema=new mongoose.Schema({
      
       },
       totalDiscountPrice: {
-        type: String,
+        type: Number,
         required: true,
        default:0
      
       },
       discounte: {
-        type: String,
+        type: Number,
         required: true,
         default:0
      
       },
-     
+      user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+    },
      
    
 });
 
-const Card=mongoose.model("cart",cardShema)
+const Card=mongoose.model("carts",cardShema)
 
 module.exports=Card;

@@ -4,7 +4,7 @@ const mongoose=require ('mongoose')
 const orderShema=new mongoose.Schema({
     user: {
         type:mongoose.Schema.Types.ObjectId,
-            ref:"users"
+            ref:"User"
        
       },
       orderitems: [{
@@ -25,7 +25,7 @@ const orderShema=new mongoose.Schema({
       },
       shippingAddress: {
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Address"
+        ref:"address"
      
       },
       paymentDetails: {
@@ -50,7 +50,7 @@ const orderShema=new mongoose.Schema({
         type:String,
         required:true
       },
-      totalicountPrice:{
+      totalDicountPrice:{
         type:Number,
         required:true
       },
@@ -78,4 +78,4 @@ const orderShema=new mongoose.Schema({
 
 const order=mongoose.model("order",orderShema)
 
-model.exports=order;
+module.exports=order;

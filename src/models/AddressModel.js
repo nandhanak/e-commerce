@@ -35,14 +35,10 @@ const AddressShema=new mongoose.Schema({
         required: true,
        
       },
-      city: {
-        type: String,
-        required: true,
-       
-      },
+      
       user:{
         type:mongoose.Schema.ObjectId,
-        ref:"users"
+        ref:"user"
       },
       phone: {
         type: String,
@@ -50,6 +46,6 @@ const AddressShema=new mongoose.Schema({
        
       },
 })
-const Address=mongoose.model("addresses",AddressShema);
+const Address=mongoose.model("address",AddressShema);
 
 module.exports=Address;

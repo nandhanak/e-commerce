@@ -1,11 +1,11 @@
-const ReviewServices=require("../services/")
+const RatingServices=require("../services/ratingService")
 
 
-const createReview  =async(req,res)=>{
+const createRating  =async(req,res)=>{
     const  user=req.user;
     try
     {
-   const review=await ReviewServices.createReview(req.body.review);
+   const review=await RatingServices.createRating(req.body.user);
    return res.status(201).send(review);
     }
     catch(error){
@@ -13,18 +13,22 @@ const createReview  =async(req,res)=>{
     }
 
 }
-const getAllReview  =async(req,res)=>{
+const getAllRating  =async(req,res)=>{
     const productId=req.params.productId;
     const  user=req.user;
     try
     {
-   const review=await ReviewServices.getAllReview(productId);
+   const review=await RatingServices.getAllRating(productId);
    return res.status(201).send(review);
     }
     catch(error){
         return res.status(500).send({error:error.message});
     }
 
+}
+module.exports={
+    createRating,
+    getAllRating,
 }
 
 

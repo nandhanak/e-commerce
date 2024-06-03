@@ -4,16 +4,16 @@ const mongoose=require ('mongoose')
 const cardItemShema=new mongoose.Schema({
     cart:{
         type:mongoose.Schema .Types.ObjectId,
-        ref:"users",
-        require:true
+        ref:"carts",
+        required:true
       },
       product:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"products",
-        require:true
+        ref:"product",
+        required:true
       },
       size: {
-        type: Number,
+        type: String,
         required: true,
      
       },
@@ -24,20 +24,20 @@ const cardItemShema=new mongoose.Schema({
      
       },
       price: {
-        type: String,
+        type: Number,
         required: true,
        
      
       },
       discountedPrice: {
-        type: String,
+        type: Number,
         required: true,
       
      
       },
-      userId: {
+      user: {
         type:mongoose.Schema .Types.ObjectId,
-       ref:'users',
+       ref:'User',
        required:true
      
       },
@@ -47,6 +47,6 @@ const cardItemShema=new mongoose.Schema({
    
 });
 
-const CardItem=mongoose.model("cardItem",cardItemShema)
+const CardItem=mongoose.model("cardItems",cardItemShema)
 
 module.exports=CardItem;

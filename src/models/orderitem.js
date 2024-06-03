@@ -5,7 +5,7 @@ const orderItemShema=new mongoose.Schema({
   
     product:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"products",
+        ref:"product",
         require:true
       },
       size: {
@@ -27,13 +27,13 @@ const orderItemShema=new mongoose.Schema({
       },
       discountedPrice: {
         type: Number,
-        required: true,
+       required:true,
       
      
       },
-      userId: {
+      user: {
         type:mongoose.Schema .Types.ObjectId,
-       ref:'users',
+       ref:'User',
        required:true
      
       },
@@ -45,4 +45,4 @@ const orderItemShema=new mongoose.Schema({
 
 const OrderItem=mongoose.model("Orderitem",orderItemShema)
 
-model.exports=OrderItem;
+module.exports=OrderItem;

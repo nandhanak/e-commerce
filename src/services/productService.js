@@ -1,9 +1,6 @@
-
-
 const Category=require("../models/cartitem");
-const product = require("../models/productModel");
 const Product=require("../models/productModel");
-const { findById } = require("../models/user");
+
 
 async function createProduct(reqData){
     let topLeval=await Category.findOne({name:reqData.topLevelCategory});
@@ -11,7 +8,7 @@ async function createProduct(reqData){
     if(!topLeval){
         topLeval=new Category({
             name:reqData.topLevelCategory,
-            lavel:1
+            level:1
         })
        
     }
@@ -42,17 +39,18 @@ async function createProduct(reqData){
         })
     }
     const product=new Product({
-        titile:reqData.titile,
+        title:reqData.title,
         color:reqData.color,
-        description:reqData.description,
-        discountPrice:reqData.discountPrice,
+        discription:reqData.discription,
+        discountedPrice:reqData.discountedPrice,
         discountPersentage:reqData.discountPersentage,
         imageUrl:reqData.imageUrl,
         brand:reqData.brand,
         price: reqData.price,
         sizes:reqData.sizes,
         quantity:reqData.quantity,
-        category:reqData.category._id,
+        category:thirdLevel._id,
+       
 
 
     })

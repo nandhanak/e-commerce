@@ -1,9 +1,11 @@
 const cartService=require("../services/cartService")
 
 const findUserCart=async(req,res)=>{
-    const user=req.user;
+    let userId=req.user;
+    console.log(userId,"userId");
     try{
-        const cart=await cartService.findUserCart(user._id);
+        const cart=await cartService.findUserCart(userId.userId);
+        console.log("cart2",cart);
         return res.status(200).send(cart);
     }
     catch(error){
@@ -12,9 +14,10 @@ const findUserCart=async(req,res)=>{
 }
 
 const addtemCart=async(req,res)=>{
-    const user=req.user;
+    const userId=req.query.user;
+    console.log(userId);
     try{
-        const cartItem=await cartService.findUserCart(user._id,req.body);
+        const cartItem=await cartService.addCartItem(userId, req.body)
         return res.status(200).send(cartItem);
     }
     catch(error){

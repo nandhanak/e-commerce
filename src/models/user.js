@@ -34,7 +34,7 @@ const userShema=new mongoose.Schema({
       address:[
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref:"addresses"
+            ref:"address"
         }
       ],
       paymentInformation:[
@@ -54,12 +54,12 @@ const userShema=new mongoose.Schema({
             ref:" reviews"
         }
       ],
+     
       createdAt:{
         type:Date,
         default:Date.now()
       }
 })
-
-const User=mongoose.model("user",userShema)
+const User=mongoose.model("User",userShema)
 
 module.exports=User;

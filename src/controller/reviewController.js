@@ -26,6 +26,10 @@ const getAllReview  =async(req,res)=>{
     }
 
 }
+module.exports={
+    getAllReview,
+    createReview
+}
 
 
 

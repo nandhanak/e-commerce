@@ -4,7 +4,7 @@ const Secretkey="dbcFJHBVBVN56789";
 
 
 const genereteToken=(userId)=>{
-    return jwt.sign({userId},Secretkey,{expiresIn:"1d"});
+    return jwt.sign({userId},Secretkey,{expiresIn:"2d"});
 };
 
 

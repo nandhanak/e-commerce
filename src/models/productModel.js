@@ -13,30 +13,30 @@ const productShema=new mongoose.Schema({
        
       },
       price: {
-        type: String,
+        type: Number,
         required: true,
      
       },
-      discountPrice: {
-        type: String,
+      discountedPrice: {
+        type: Number,
         required: true,
      
       },
       discountPersentage: {
-        type: String,
-        required: true,
+        type: Number,
+       required:true,
        
      
       },
       quantity: {
-        type: String,
+        type: Number,
         required: true,
      
       },
       brand:
         {
             type: String,
-            required: true,
+           
         }
     ,
      color:
@@ -72,7 +72,7 @@ const productShema=new mongoose.Schema({
           },
           category: {
             type:mongoose.Schema.Types.ObjectId,
-            ref:"categorys"
+            ref:"category"
            
           },
           createAt:

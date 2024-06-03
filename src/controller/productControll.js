@@ -4,10 +4,13 @@ const ProductService=require("../services/productService")
 const createProduct=async(req,res)=>{
     try{
       const product= await ProductService.createProduct(req.body);
+      console.log(  "Success");
       return res.status(201).send(product);
 
     }catch(error){
+      
         return res.status(500).send({error:error.message});
+       
     }
 }
 
