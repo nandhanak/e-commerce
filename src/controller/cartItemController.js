@@ -18,9 +18,11 @@ const updateCartitem=async(req,res)=>{
 
 const removeCartitem=async(req,res)=>{
 
-    const user=req.user
+    const userId=req.user
+    console.log(userId);
+
     try{
-   await Cartitemservice.removeCartitem(user._id,req.params.id);
+   await Cartitemservice.removeCartItem(userId.userId,req.params.id);
    return res.status(200).send({message:"cart removed"});
 
     }catch(error){

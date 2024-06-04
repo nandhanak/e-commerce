@@ -31,15 +31,16 @@ const AddressShema=new mongoose.Schema({
      
        
       zipCode: {
-        type: Number,
+        type: String,
         required: true,
        
       },
       
-      user:{
+      user:[{
         type:mongoose.Schema.ObjectId,
-        ref:"user"
-      },
+        ref:"User",
+        required:true,
+      }],
       phone: {
         type: String,
         required: true,

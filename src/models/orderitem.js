@@ -9,7 +9,7 @@ const orderItemShema=new mongoose.Schema({
         require:true
       },
       size: {
-        type: Number,
+        type: String,
       
      
       },

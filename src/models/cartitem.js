@@ -32,8 +32,6 @@ const cardItemShema=new mongoose.Schema({
       discountedPrice: {
         type: Number,
         required: true,
-      
-     
       },
       user: {
         type:mongoose.Schema .Types.ObjectId,

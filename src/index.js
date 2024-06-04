@@ -32,7 +32,7 @@ app.use("/api/user",userRoutes)
 app.use("/api/products",productRoutes);
 app.use('/api/admin/products',AdminProductRoutes);
 app.use('/api/cart',cartRoutes);
-app.use('/api/crt_items',CartitemRoutes);
+app.use('/api/cart_items',CartitemRoutes);
 app.use('/api/orders',orderRoutes);
 app.use("/api/review",reviewRoutes);
 app.use("/api/ratings",ratingRoutes);

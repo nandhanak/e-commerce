@@ -26,23 +26,28 @@ async function updateCartitem(userId,cartItemId,cartItemData){
       }
 
     }catch(error){
-
+throw error;
     }
 }
-async function removeCartItem(userId,cartItemId){
-    const cartItem=await findCartItemById(cartItemId);
-    const user=await userService.findUserById(userId);
-
-
-    if(user._id.toString()===cartItem.userId.toString()){
-        await Cartitem.findByIdAndDelete(cartItemId)
-
-    }
-    return console.log("you cant remove");
-
+async function removeCartItem(userId, cartItemId) {
+  try {
+      const cartItem = await findCartItemById(cartItemId);
+      const user = await userService.findUserById('665d8e8f091160682bfe82cf');
+console.log(cartItemId);
+      if ( (user && user._id && cartItem && cartItem.user && user._id.toString() === cartItem.user.toString())) {
+          await Cartitem.findByIdAndDelete(cartItemId);
+          console.log("Item removed successfully");
+          return;
+      } else {
+          console.log("You can't remove this item");
+      }
+  } catch (error) {
+      console.error("An error occurred:", error);
+      throw error;
+  }
 }
 async function findCartItemById(cartItemId){
-    const cartItem=await findCartItemById(cartItemId);
+    const cartItem=await Cartitem.findById(cartItemId)
     if(cartItem){
         return cartItem
     }

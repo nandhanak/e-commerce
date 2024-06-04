@@ -7,13 +7,12 @@ const orderShema=new mongoose.Schema({
             ref:"User"
        
       },
-      orderitems: [{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"orderItems"
-       
-      }],
+      orderItems: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Orderitem'
+    }],
       orderDate: {
-        type: String,
+        type: Date,
         required: true,
      
       },
@@ -47,15 +46,15 @@ const orderShema=new mongoose.Schema({
       },
       
       totalPrice:{
-        type:String,
-        required:true
-      },
-      totalDicountPrice:{
         type:Number,
         required:true
       },
-      dicounte:{
-        type:String,
+      totalDiscountPrice:{    
+        type:Number,
+        required:true
+      },
+      discounte:{
+        type:Number,
         required:true
       },
       orderStatus:{

@@ -29,12 +29,14 @@ const userShema=new mongoose.Schema({
       },
       phone: {
         type: String,
+        required:Number
       
       },
       address:[
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"address"
+          type:mongoose.Schema.Types.ObjectId,
+              ref:"address",
+            required:true
         }
       ],
       paymentInformation:[

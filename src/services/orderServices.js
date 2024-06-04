@@ -4,29 +4,44 @@ const product = require("../models/productModel");
 const Order=require("../models/ordermodel");
 const OrderItem=require('../models/orderitem')
 
+const User=require('../models/user')
 
 
 
-
-async function createorder(user, shippingAddress) {
+async function createorder( user,shippAddress) {
     try {
+        console.log(shippAddress);
+        const user='665d8e8f091160682bfe82cf';
+       
         let address;
-        if (shippingAddress._id) {
-            let isExist = await Address.findById(shippingAddress._id);
-            address = isExist;
-        } else {
-            address = new Address(shippingAddress);
+      if(shippAddress._id){
+        let existAddress=await Address.findById(shippAddress._id);
+        address=existAddress;
+      }else{
+            address = new Address(shippAddress);
             address.user = user;
-            await address.save();
-            console.log("user.address", user.address);
-            user.address.push(address);
-            await user.save();
-            console.log(user);
-        }
+         
+           const addAddress= await address.save();
+          
+             console.log(addAddress._id);
+             const Userid=await User.findById(user);
+             if(!Userid)
+                {
+                    console.log(Userid,"not here");
+                }
+                console.log(Userid,"here");
+               
+                
+          Userid.address.push(addAddress);
+    
+           await Userid.save();
 
-//const cart = await cartService.findUserCart(user._id);
-        console.log(cart);
-        const orderItems = [];
+            console.log(Userid,"userrrrr");
+        
+      }
+const cart = await cartService.findUserCart(user._id);
+        console.log(cart,'cartttt');
+        const orderItemsId = [];
 
         for (const item of cart.cartItems) {
             const orderItem = new OrderItem({
@@ -34,38 +49,46 @@ async function createorder(user, shippingAddress) {
                 product: item.product,
                 quantity: item.quantity,
                 size: item.size,
-                userId: item.userId,
+                user: item.user,
                 discountedPrice: item.discountedPrice,
             });
             const createOrderItem = await orderItem.save();
-            orderItems.push(createOrderItem);
+            orderItemsId.push(createOrderItem);
+            if(!orderItemsId){
+                console.log("no array",orderItemsId);
+            }
+          console.log(orderItemsId,"array");
         }
 
         const createOrder = new Order({
             user,
-            orderItems,
+            orderItems:orderItemsId,
             totalPrice: cart.totalPrice,
-            totalDiscountedPrice: cart.totalDiscountPrice,
-            discounte: cart.discounte,
+            totalDiscountPrice: cart.totalDiscountPrice,
+            discounte:cart.discounte,
             totalItem: cart.totalItem,
             shippAddress: address,
+            orderDate: new Date(),
+            createAd: new Date()
         });
 
         const saveOrder = await createOrder.save();
+        
+        console.log("succuess",saveOrder);
         return saveOrder;
     } catch (error) {
         throw error;
     }
 }
 
-
+ 
 async function confiremeOrder(orderId){
     const order =await findOrderById(orderId);
   
     order.orderStatus="CONFIRMED";
    
     return await order.save();
-    `   `
+
 }
 
 async function shipOrder(orderId){

@@ -33,11 +33,11 @@ const cardShema=new mongoose.Schema({
         default:0
      
       },
-      user:{
+      user:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:true
-    },
+    }],
      
    
 });
