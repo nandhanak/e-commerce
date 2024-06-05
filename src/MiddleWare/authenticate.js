@@ -1,4 +1,3 @@
-
 const jwtVarify=require("../Config/jwtProvider")
 const userServices=require('../services/useService')
 const jwt=require("jsonwebtoken")

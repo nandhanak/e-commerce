@@ -39,10 +39,6 @@ const cardItemShema=new mongoose.Schema({
        required:true
      
       },
-
-     
-     
-   
 });
 
 const CardItem=mongoose.model("cardItems",cardItemShema)

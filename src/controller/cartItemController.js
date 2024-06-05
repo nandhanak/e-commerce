@@ -3,10 +3,10 @@ const Cartitemservice=require("../services/cartItemservice")
 
 
 const updateCartitem=async(req,res)=>{
-
-    const user=req.user
+const user='665d8e8f091160682bfe82cf';
+    //const user=req.user
     try{
-   const updatedCartitem=await Cartitemservice.updateCartitem(user._id,req.params.id,req.body);
+   const updatedCartitem=await Cartitemservice.updateCartitem(user,req.params.id,req.body);
    return res.status(200).send(updatedCartitem);
 
     }catch(error){

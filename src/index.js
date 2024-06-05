@@ -9,6 +9,8 @@ const orderRoutes=require('./routes/orderROutes')
 const reviewRoutes=require('./routes/reviewRoutes');
 const ratingRoutes=require('./routes/ratingRoutes')
 const AdminOrderRoutes=require('./routes/adminOrderRoutes');
+const adminRouter=require('./routes/adminRoutes')
+const sellerRoutes=require('./routes/SellerRoutes')
 
 
 
@@ -37,6 +39,9 @@ app.use('/api/orders',orderRoutes);
 app.use("/api/review",reviewRoutes);
 app.use("/api/ratings",ratingRoutes);
 app.use('/api/admin',AdminOrderRoutes);
+app.use('/api/Mainadmin', adminRouter)
+app.use('/api/Seller',sellerRoutes)
+
 
 
 
